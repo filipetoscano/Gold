@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?codebehind transformation="ToShape.xslt"?>
+<form xmlns="urn:gold/forms">
+    <name>Web flow</name>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Formatting
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <text format="[{0}] {1}">
+        <arg xpath=" r/process/text() " />
+        <arg xpath=" r/description/text() " />
+    </text>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Functional properties
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <section name="Functional">
+        <string id="Flow" name="Process">
+            <required for="analysis" />
+            <length max="6" />
+        </string>
+
+        <string id="Description" name="Description">
+            <required for="analysis" />
+            <length max="50" />
+        </string>
+
+        <string id="Notes" name="Notes" multiline="true" />
+    </section>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Technical properties
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <section name="Technical">
+    </section>
+
+</form>

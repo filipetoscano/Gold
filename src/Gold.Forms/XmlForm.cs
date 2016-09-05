@@ -1,5 +1,4 @@
-﻿// $Id: XmlForm.cs 1176 2011-11-24 11:09:31Z tosclui $
-using Gold.Core;
+﻿using Gold;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -38,7 +37,7 @@ namespace Gold.Forms
         }
 
 
-        public void Initialize( ShapeDefinition shape, string mode, string shapeCode, string shapeXml )
+        public void Initialize( IShapeDefinition shape, string mode, string shapeCode, string shapeXml )
         {
             #region Validations
 

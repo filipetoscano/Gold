@@ -40,13 +40,58 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Node.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Node.xml</DependentUpon>
+    </Compile>
+    <Compile Include="FlowStartImpl.cs" />
+    <Compile Include="TransitionImpl.cs" />
+    <Compile Include="ScreenImpl.cs" />
+    <Compile Include="NodeImpl.cs" />
+    <Compile Include="FlowStart.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FlowStart.xml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screen.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Screen.xml</DependentUpon>
+    </Compile>
+    <Compile Include="Transition.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Transition.xml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gold.Core\Gold.Core.csproj">
       <Project>{68c831ff-1711-4569-9438-50cebe2fdb95}</Project>
       <Name>Gold.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Node.xml">
+      <Generator>YXsltTool</Generator>
+      <LastGenOutput>Node.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FlowStart.xml">
+      <Generator>YXsltTool</Generator>
+      <LastGenOutput>FlowStart.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screen.xml">
+      <Generator>YXsltTool</Generator>
+      <LastGenOutput>Screen.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="ToShape.xslt" />
+    <EmbeddedResource Include="Transition.xml">
+      <Generator>YXsltTool</Generator>
+      <LastGenOutput>Transition.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

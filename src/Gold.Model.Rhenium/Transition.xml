@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?codebehind transformation="ToShape.xslt"?>
+<form xmlns="urn:gold/forms">
+    <name>Transition</name>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Functional properties
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <section name="Functional">
+        <string id="Event" name="Event">
+            <required for="analysis" />
+            <length max="30" />
+        </string>
+
+        <string id="Description" name="Description">
+            <required for="analysis" />
+            <length max="200" />
+        </string>
+
+        <string id="Notes" name="Notes" multiline="true" />
+    </section>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Technical properties
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <section name="Technical">
+        <string id="TechNotes" name="Notes" multiline="true" />
+    </section>
+</form>

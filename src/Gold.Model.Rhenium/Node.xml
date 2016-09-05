@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?codebehind transformation="ToShape.xslt"?>
+<form xmlns="urn:gold/forms">
+    <name>Node</name>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Functional properties
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <section name="Functional">
+        <string id="Description" name="Description">
+            <required for="analysis" />
+            <length max="100" />
+        </string>
+
+        <string id="Notes" name="Notes" multiline="true" />
+    </section>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Technical properties
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <section name="Technical">
+        <string id="Moniker" name="Moniker" toolTip="By default, will use class name which includes flow and node identifiers.">
+            <length max="100" />
+        </string>
+
+        <string id="StoryEvent" name="Story event">
+            <length max="30" />
+        </string>
+    </section>
+</form>

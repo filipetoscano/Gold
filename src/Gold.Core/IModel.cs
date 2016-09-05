@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Gold.Core
+namespace Gold
 {
     public interface IModel
     {
