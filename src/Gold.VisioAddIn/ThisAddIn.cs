@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml.Linq;
 using Visio = Microsoft.Office.Interop.Visio;
 using Office = Microsoft.Office.Core;
+using System.Windows.Forms;
 
 namespace Gold.VisioAddIn
 {
@@ -24,6 +25,9 @@ namespace Gold.VisioAddIn
                 this.Application.MarkerEvent += new Visio.EApplication_MarkerEventEventHandler( Application_MarkerEvent );
 
 
+                /*
+                 * 
+                 */
                 _initializedOk = true;
             }
             catch ( Exception )
@@ -40,10 +44,10 @@ namespace Gold.VisioAddIn
 
 
         /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-         ~ 
-         ~ Shape commands
-         ~ 
-         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+        * 
+        * Shape commands
+        * 
+        * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
         private void Application_MarkerEvent( Visio.Application app, int sequenceNum, string contextString )
         {
@@ -64,6 +68,9 @@ namespace Gold.VisioAddIn
             if ( contextString == null )
                 return;
 
+            if ( contextString.Contains( "/au=1" ) == false )
+                return;
+
 
             /*
              * Don't process any marker events that are being fired as a result
@@ -72,12 +79,28 @@ namespace Gold.VisioAddIn
             if ( this.Application.IsUndoingOrRedoing == true )
                 return;
 
-
+            MessageBox.Show( contextString );
         }
 
 
 
-        #region VSTO generated code
+        /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        * 
+        * Shape commands
+        * 
+        * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+        /// <summary>
+        /// Indicate which ribbon this addin requires.
+        /// </summary>
+        /// <returns>
+        /// Instance of ribbon.
+        /// </returns>
+        protected override Office.IRibbonExtensibility CreateRibbonExtensibilityObject()
+        {
+            return new AppRibbon();
+        }
+
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -85,10 +108,8 @@ namespace Gold.VisioAddIn
         /// </summary>
         private void InternalStartup()
         {
-            this.Startup += new System.EventHandler( ThisAddIn_Startup );
-            this.Shutdown += new System.EventHandler( ThisAddIn_Shutdown );
+            this.Startup += new EventHandler( ThisAddIn_Startup );
+            this.Shutdown += new EventHandler( ThisAddIn_Shutdown );
         }
-
-        #endregion
     }
 }
