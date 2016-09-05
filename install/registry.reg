@@ -1,0 +1,7 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Microsoft\Visio\Addins\Gold.VisioAddIn]
+"Description"="DSL are Gold"
+"FriendlyName"="Gold.VisioAddIn"
+"LoadBehavior"=dword:00000003
+"Manifest"="C:\\Work\\Transition\\Gold\\src\\Gold.VisioAddIn\\bin\\Debug\\Gold.VisioAddIn.vsto|vstolocal"
