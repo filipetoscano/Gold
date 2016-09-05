@@ -211,18 +211,22 @@
     <EmbeddedResource Include="AppRibbon.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\ExportImage.png" />
+    <Content Include="Resources\ValidateImage.png" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Gold.Core\Gold.Core.csproj">
       <Project>{68c831ff-1711-4569-9438-50cebe2fdb95}</Project>
       <Name>Gold.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gold.Forms\Gold.Forms.csproj">
+      <Project>{16d49ce1-c405-4b56-ba91-aca9538f13be}</Project>
+      <Name>Gold.Forms</Name>
     </ProjectReference>
     <ProjectReference Include="..\Gold.Runtime\Gold.Runtime.csproj">
       <Project>{d46a7300-3727-4c90-985f-e885f414ea1c}</Project>
       <Name>Gold.Runtime</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\ExportImage.png" />
-    <Content Include="Resources\ValidateImage.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
