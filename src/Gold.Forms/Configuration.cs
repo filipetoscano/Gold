@@ -12,11 +12,11 @@ namespace Gold.Forms
     public partial class FormsConfiguration : ConfigurationSection
     {
         /// <summary>
-        /// Gets the configuration instance for section 'gold/xforms'
+        /// Gets the configuration instance for section 'gold/forms'
         /// </summary>
         public static FormsConfiguration Current
         {
-            get { return AppConfiguration.SectionGet<FormsConfiguration>( "gold/xforms" ); }
+            get { return AppConfiguration.SectionGet<FormsConfiguration>( "gold/forms" ); }
         }
 
 

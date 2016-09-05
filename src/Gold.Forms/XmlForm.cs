@@ -85,7 +85,7 @@ namespace Gold.Forms
             _properties = new Dictionary<string, IFormProperty>();
             _propertiesList = new List<IFormProperty>();
 
-            foreach ( XmlElement section in document.SelectNodes( " /xf:form/xf:section ", config.NsManager ) )
+            foreach ( XmlElement section in document.SelectNodes( " /xf:shape/xf:section ", config.NsManager ) )
             {
                 string sectionName = section.GetAttribute( "name" );
 

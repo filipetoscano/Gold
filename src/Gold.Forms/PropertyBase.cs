@@ -39,9 +39,9 @@ namespace Gold.Forms
 
             
             /*
-             * s:required/
+             * xf:required/
              */
-            XmlElement requiredElem = (XmlElement) propertyElem.SelectSingleNode( " s:required ", config.NsManager );
+            XmlElement requiredElem = (XmlElement) propertyElem.SelectSingleNode( " xf:required ", config.NsManager );
 
             if ( requiredElem != null )
             {
@@ -66,18 +66,18 @@ namespace Gold.Forms
 
 
             /*
-             * s:hasConditionals/
+             * xf:hasConditionals/
              */
-            XmlElement hasConditionalsElem = (XmlElement) propertyElem.SelectSingleNode( " s:hasConditionals ", config.NsManager );
+            XmlElement hasConditionalsElem = (XmlElement) propertyElem.SelectSingleNode( " xf:hasConditionals ", config.NsManager );
 
             if ( hasConditionalsElem != null )
                 this.HasConditionals = true;
 
 
             /*
-             * s:conditional/
+             * xf:conditional/
              */
-            XmlNodeList conditionals = propertyElem.SelectNodes( " s:conditional[ @ref and @value ] ", config.NsManager );
+            XmlNodeList conditionals = propertyElem.SelectNodes( " xf:conditional[ @ref and @value ] ", config.NsManager );
 
             if ( conditionals != null && conditionals.Count > 0 )
             {

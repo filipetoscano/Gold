@@ -156,7 +156,7 @@ namespace Gold.VisioAddIn
                     int sequence = PageIncrementSequence( shape, shapeDef.ShapeCodePrefix );
                     shapeCode = string.Format( CultureInfo.InvariantCulture, shapeDef.ShapeCodeFormat, shapeDef.ShapeCodePrefix, sequence );
 
-                    VU.SetProperty( shape, "User", "ModelShapeCode", shapeCode );
+                    VU.SetProperty( shape, "User", "ShapeCode", shapeCode );
                 }
 
 
@@ -177,7 +177,7 @@ namespace Gold.VisioAddIn
             if ( ctx[ "cmd" ] == "edit" )
             {
                 string mode = "analysis"; //_toolbar.CurrentMode;
-                string shapeCode = VU.GetProperty( shape, "User", "ModelShapeCode" );
+                string shapeCode = VU.GetProperty( shape, "Prop", "ShapeCode" );
                 string shapeXml = VU.GetProperty( shape, "Prop", "ShapeXml" );
 
                 XmlForm form = new XmlForm();

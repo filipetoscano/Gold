@@ -50,8 +50,8 @@ namespace Gold.Forms
             /*
              * 
              */
-            this.MinLength = RestrictionGet( propertyElem, " s:length/@min " );
-            this.MaxLength = RestrictionGet( propertyElem, " s:length/@max " );
+            this.MinLength = RestrictionGet( propertyElem, " xf:length/@min " );
+            this.MaxLength = RestrictionGet( propertyElem, " xf:length/@max " );
 
 
             /*

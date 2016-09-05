@@ -19,7 +19,7 @@ namespace Gold.Forms
                         if ( _manager == null )
                         {
                             XmlNamespaceManager manager = new XmlNamespaceManager( new NameTable() );
-                            manager.AddNamespace( "xf", "urn:gold/forms" );
+                            manager.AddNamespace( "xf", "urn:gold" );
                             
                             foreach ( var ns in this.Namespaces )
                                 manager.AddNamespace( ns.Prefix, ns.Namespace );

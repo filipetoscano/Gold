@@ -25,7 +25,7 @@ namespace Gold.Forms
             this.comboBox.DisplayMember = "Label";
             this.comboBox.ValueMember = "Value";
 
-            foreach ( XmlElement option in propertyElem.SelectNodes( " s:options/s:option[ @label and @value ] ", FormsConfiguration.Current.NsManager ) )
+            foreach ( XmlElement option in propertyElem.SelectNodes( " xf:options/xf:option[ @label and @value ] ", FormsConfiguration.Current.NsManager ) )
             {
                 ListItem item = new ListItem()
                 {

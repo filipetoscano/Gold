@@ -52,10 +52,10 @@ namespace Gold.Forms
              */
             XmlElement propertyElem = (XmlElement) propertyDefinition;
 
-            this.MinExclusive = RestrictionGet( propertyElem, " s:range/@minExclusive " );
-            this.MinInclusive = RestrictionGet( propertyElem, " s:range/@minInclusive " );
-            this.MaxExclusive = RestrictionGet( propertyElem, " s:range/@maxExclusive " );
-            this.MaxInclusive = RestrictionGet( propertyElem, " s:range/@maxInclusive " );
+            this.MinExclusive = RestrictionGet( propertyElem, " xf:range/@minExclusive " );
+            this.MinInclusive = RestrictionGet( propertyElem, " xf:range/@minInclusive " );
+            this.MaxExclusive = RestrictionGet( propertyElem, " xf:range/@maxExclusive " );
+            this.MaxInclusive = RestrictionGet( propertyElem, " xf:range/@maxInclusive " );
 
 
             /*

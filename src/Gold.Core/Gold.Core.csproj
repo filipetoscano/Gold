@@ -7,7 +7,7 @@
     <ProjectGuid>{68C831FF-1711-4569-9438-50CEBE2FDB95}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Gold.Core</RootNamespace>
+    <RootNamespace>Gold</RootNamespace>
     <AssemblyName>Gold.Core</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -35,6 +35,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,7 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration.cs">
+      <DependentUpon>Configuration.xml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="IShape.cs" />
+    <Compile Include="ModelCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IModelDefinition.cs" />
     <Compile Include="ShapeBase.cs" />
@@ -53,6 +60,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configuration.xml">
+      <Generator>YConfigGenTool</Generator>
+      <LastGenOutput>Configuration.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="urn:yttrium/vs/config">
+
+    <section name="gold/model" type="ModelConfiguration">
+        <repeater name="library">
+            <item name="add" type="ModelAddConfiguration">
+                <string name="type" key="true" as="Moniker" />
+            </item>
+        </repeater>
+    </section>
+
+</configuration>
