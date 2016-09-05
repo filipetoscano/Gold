@@ -123,7 +123,12 @@ namespace Gold.Forms
                     IFormProperty prop = Platinum.Activator.Create<IFormProperty>( propertyConfig.Moniker );
                     prop.Control.Dock = DockStyle.Top;
                     prop.Initialize( property, mode );
-                    prop.Value = values[ propertyId ];
+
+                    if ( values.ContainsKey( propertyId ) == true )
+                        prop.Value = values[ propertyId ];
+                    else
+                        prop.Value = null;
+
                     prop.EvaluateConditional( values );
                     prop.RebuildConditionals += new EventHandler( RebuildConditionals );
 

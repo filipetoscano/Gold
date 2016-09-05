@@ -156,7 +156,7 @@ namespace Gold.VisioAddIn
                     int sequence = PageIncrementSequence( shape, shapeDef.ShapeCodePrefix );
                     shapeCode = string.Format( CultureInfo.InvariantCulture, shapeDef.ShapeCodeFormat, shapeDef.ShapeCodePrefix, sequence );
 
-                    VU.SetProperty( shape, "User", "ShapeCode", shapeCode );
+                    VU.SetProperty( shape, "Prop", "ShapeCode", shapeCode );
                 }
 
 
@@ -197,7 +197,6 @@ namespace Gold.VisioAddIn
                 }
             }
         }
-
 
 
         /// <summary>

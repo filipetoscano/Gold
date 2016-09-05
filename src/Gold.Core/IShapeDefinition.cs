@@ -35,8 +35,5 @@ namespace Gold
 
 
         string TextGet( string shapeCode, string xml );
-
-
-        IShape InstanceCreate();
     }
 }

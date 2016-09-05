@@ -18,7 +18,7 @@ namespace Gold
         }
 
 
-        public virtual string ShapeText()
+        public virtual string TextGet()
         {
             return null;
         }

@@ -2,7 +2,7 @@
 {
     public partial class Transition
     {
-        public override string ShapeText()
+        public override string TextGet()
         {
             return $"{ this.Description }";
         }

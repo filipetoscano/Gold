@@ -2,7 +2,7 @@
 {
     public partial class FlowStart
     {
-        public override string ShapeText()
+        public override string TextGet()
         {
             return $"[{ this.Flow }] { this.Description }";
         }

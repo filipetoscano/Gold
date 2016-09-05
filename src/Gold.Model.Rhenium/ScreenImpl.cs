@@ -2,7 +2,7 @@
 {
     public partial class Screen
     {
-        public override string ShapeText()
+        public override string TextGet()
         {
             return $"({ this.ShapeCode })\n{ this.Description }";
         }

@@ -1,6 +1,8 @@
 ﻿using Platinum.Resolver;
 using System;
+using System.IO;
 using System.Xml;
+using System.Xml.Serialization;
 
 namespace Gold
 {
@@ -37,16 +39,29 @@ namespace Gold
         }
 
 
-        public IShape InstanceCreate()
-        {
-            return Platinum.Activator.Create<T>( typeof( T ) );
-        }
-
-
         public string TextGet( string shapeCode, string xml )
         {
-            // TODO
-            return "TEXT";
+            #region Validations
+
+            if ( xml == null )
+                throw new ArgumentNullException( nameof( xml ) );
+
+            #endregion
+
+            XmlSerializer ser = new XmlSerializer( typeof( T ) );
+            T instance;
+
+            using ( var tr = new StringReader( xml ) )
+            {
+                using ( var xr = XmlReader.Create( tr ) )
+                {
+                    instance = (T) ser.Deserialize( xr );
+                }
+            }
+
+            instance.ShapeCode = shapeCode;
+
+            return instance.TextGet();
         }
     }
 }

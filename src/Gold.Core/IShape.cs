@@ -10,6 +10,6 @@
 
         bool IsValid();
 
-        string ShapeText();
+        string TextGet();
     }
 }
