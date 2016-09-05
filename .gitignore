@@ -1,0 +1,8 @@
+packages/
+src/**/bin
+src/**/obj
+tests/**/bin
+tests/**/obj
+tools/**/bin
+tools/**/obj
+zmy/
