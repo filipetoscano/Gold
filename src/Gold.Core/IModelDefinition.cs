@@ -1,6 +1,18 @@
-﻿namespace Gold
+﻿using System.Collections.Generic;
+
+namespace Gold
 {
-    public class IModelDefinition
+    public interface IModelDefinition
     {
+        string Name
+        {
+            get;
+        }
+
+
+        List<IShapeDefinition> Shapes
+        {
+            get;
+        }
     }
 }

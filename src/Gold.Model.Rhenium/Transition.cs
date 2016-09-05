@@ -1,12 +1,24 @@
 // autogenerate: do NOT manually edit
 using Gold;
 using System;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace Gold.Model.Rhenium
 {
-    public class TransitionDefinition
+    public class TransitionDefinition : ShapeDefinitionBase<Transition>, IShapeDefinition
     {
+        /// <summary />
+        public string Name
+        { get { return "Transition"; } }
+
+        /// <summary />
+        public string FriendlyName
+        { get { return "Transition"; } }
+
+        /// <summary />
+        public XmlDocument FormDefinition
+        { get { return FormDefinitionLoad(); } }
     }
 
 

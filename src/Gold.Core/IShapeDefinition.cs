@@ -4,7 +4,25 @@ namespace Gold
 {
     public interface IShapeDefinition
     {
-        string PublicName
+        string Name
+        {
+            get;
+        }
+
+
+        string FriendlyName
+        {
+            get;
+        }
+
+
+        string ShapeCodePrefix
+        {
+            get;
+        }
+
+
+        string ShapeCodeFormat
         {
             get;
         }
@@ -14,5 +32,11 @@ namespace Gold
         {
             get;
         }
+
+
+        string TextGet( string shapeCode, string xml );
+
+
+        IShape InstanceCreate();
     }
 }

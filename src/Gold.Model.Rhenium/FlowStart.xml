@@ -1,17 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <?codebehind transformation="ToShape.xslt"?>
-<form xmlns="urn:gold/forms">
+<shape xmlns="urn:gold">
     <name>Web flow</name>
-
-    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    ~
-    ~ Formatting
-    ~
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <text format="[{0}] {1}">
-        <arg xpath=" r/process/text() " />
-        <arg xpath=" r/description/text() " />
-    </text>
 
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -41,5 +31,4 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <section name="Technical">
     </section>
-
-</form>
+</shape>

@@ -1,12 +1,24 @@
 // autogenerate: do NOT manually edit
 using Gold;
 using System;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace Gold.Model.Rhenium
 {
-    public class FlowStartDefinition
+    public class FlowStartDefinition : ShapeDefinitionBase<FlowStart>, IShapeDefinition
     {
+        /// <summary />
+        public string Name
+        { get { return "FlowStart"; } }
+
+        /// <summary />
+        public string FriendlyName
+        { get { return "Web flow"; } }
+
+        /// <summary />
+        public XmlDocument FormDefinition
+        { get { return FormDefinitionLoad(); } }
     }
 
 

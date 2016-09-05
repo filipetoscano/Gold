@@ -54,9 +54,9 @@ namespace Gold.Forms
              *
              */
             if ( string.IsNullOrEmpty( shapeCode ) == true )
-                this.Text = shape.PublicName;
+                this.Text = shape.FriendlyName;
             else
-                this.Text = string.Concat( shape.PublicName, ": ", shapeCode );
+                this.Text = string.Concat( shape.FriendlyName, ": ", shapeCode );
 
 
             /*

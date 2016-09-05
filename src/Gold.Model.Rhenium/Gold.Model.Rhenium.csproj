@@ -46,6 +46,7 @@
       <DependentUpon>Node.xml</DependentUpon>
     </Compile>
     <Compile Include="FlowStartImpl.cs" />
+    <Compile Include="RheniumModel.cs" />
     <Compile Include="TransitionImpl.cs" />
     <Compile Include="ScreenImpl.cs" />
     <Compile Include="NodeImpl.cs" />

@@ -1,7 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <?codebehind transformation="ToShape.xslt"?>
-<form xmlns="urn:gold/forms">
+<shape xmlns="urn:gold">
     <name>Node</name>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Definition
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <definition>
+        <sequence prefix="N" format="N{1:D3}" />
+    </definition>
 
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -33,4 +43,4 @@
             <length max="30" />
         </string>
     </section>
-</form>
+</shape>

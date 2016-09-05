@@ -1,6 +1,10 @@
-﻿using Gold.Runtime.Visio;
+﻿using Gold.Forms;
+using Gold.Runtime.Visio;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Windows.Forms;
 using Office = Microsoft.Office.Core;
 using Visio = Microsoft.Office.Interop.Visio;
 
@@ -8,6 +12,7 @@ namespace Gold.VisioAddIn
 {
     public partial class ThisAddIn
     {
+        private AppRibbon _ribbon;
         private bool _initializedOk;
 
         private void ThisAddIn_Startup( object sender, System.EventArgs e )
@@ -106,17 +111,155 @@ namespace Gold.VisioAddIn
 
 
             /*
+             * Model
+             */
+            IModelDefinition model;
+
+            try
+            {
+                model = ModelCache.Load( modelName );
+            }
+            catch ( Exception ex )
+            {
+                // TODO
+                MessageBox.Show( ex.ToString() );
+                return;
+            }
+
+
+            /*
              * 
              */
-            
+            IShapeDefinition shapeDef = model.Shapes.Where( x => x.Name == shapeName ).FirstOrDefault();
 
+            if ( shapeDef == null )
+            {
+                // TODO
+                MessageBox.Show( "shape no def!" );
+                return;
+            }
+
+
+            /*
+             * Drop command
+             */
+            if ( ctx[ "cmd" ] == "drop" )
+            {
+                /*
+                 * 
+                 */
+                string shapeId = Guid.NewGuid().ToString();
+                string shapeCode = null;
+
+                if ( string.IsNullOrEmpty( shapeDef.ShapeCodePrefix ) == false )
+                {
+                    int sequence = PageIncrementSequence( shape, shapeDef.ShapeCodePrefix );
+                    shapeCode = string.Format( CultureInfo.InvariantCulture, shapeDef.ShapeCodeFormat, shapeDef.ShapeCodePrefix, sequence );
+
+                    VU.SetProperty( shape, "User", "ModelShapeCode", shapeCode );
+                }
+
+
+                /*
+                 * 
+                 */
+                string shapeXml = VU.GetProperty( shape, "Prop", "ShapeXml" );
+                string shapeText = shapeDef.TextGet( shapeCode, shapeXml );
+
+                if ( string.IsNullOrEmpty( shapeText ) == false )
+                    VU.TextSet( shape, shapeText );
+            }
+
+
+            /*
+             * 
+             */
+            if ( ctx[ "cmd" ] == "edit" )
+            {
+                string mode = "analysis"; //_toolbar.CurrentMode;
+                string shapeCode = VU.GetProperty( shape, "User", "ModelShapeCode" );
+                string shapeXml = VU.GetProperty( shape, "Prop", "ShapeXml" );
+
+                XmlForm form = new XmlForm();
+                form.Initialize( shapeDef, mode, shapeCode, shapeXml );
+
+                DialogResult result = form.ShowDialog();
+
+                if ( result == DialogResult.OK )
+                {
+                    VU.SetProperty( shape, "Prop", "ShapeXml", form.ShapeXml );
+                    VU.ShapeColorSet( shape, Visio.VisDefaultColors.visBlack );
+
+                    string shapeText = shapeDef.TextGet( shapeCode, form.ShapeXml );
+
+                    if ( string.IsNullOrEmpty( shapeText ) == false )
+                        VU.TextSet( shape, shapeText );
+                }
+            }
+        }
+
+
+
+        /// <summary>
+        /// Increments a named sequence, keeping the current sequence value in the
+        /// page shape-sheet. If the sequence does not exist, will create the
+        /// necessary properties in the shape-sheet.
+        /// </summary>
+        /// <param name="shape">Visio shape.</param>
+        /// <param name="sequence">Sequence which will be incremented.</param>
+        /// <returns>Sequence number.</returns>
+        private int PageIncrementSequence( Visio.IVShape shape, string sequence )
+        {
+            #region Validations
+
+            if ( shape == null )
+                throw new ArgumentNullException( nameof( shape ) );
+
+            if ( sequence == null )
+                throw new ArgumentNullException( nameof( sequence ) );
+
+            #endregion
+
+            /*
+             * 
+             */
+            Visio.Page page = (Visio.Page) shape.Parent;
+
+            string cellFull = string.Concat( "User.ModelSequence_", sequence, ".Value" );
+            string cellPart = string.Concat( "ModelSequence_", sequence );
+
+
+            /*
+             * 
+             */
+            int value = 0;
+
+            lock ( this )
+            {
+                Visio.Cell cell;
+
+                if ( page.PageSheet.get_CellExists( cellFull, 1 ) != 0 )
+                {
+                    cell = page.PageSheet.get_Cells( cellFull );
+                    value = int.Parse( VU.FormulaToString( cell.Formula ), CultureInfo.InvariantCulture );
+                }
+                else
+                {
+                    page.PageSheet.AddNamedRow( (short) Visio.VisSectionIndices.visSectionUser, cellPart, 0 );
+                    cell = page.PageSheet.get_Cells( cellFull );
+                }
+
+                cell.Formula = (++value).ToString( CultureInfo.InvariantCulture );
+            }
+
+            return value;
         }
 
 
 
         /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         * 
-        * Shape commands
+        * API
         * 
         * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
@@ -128,7 +271,9 @@ namespace Gold.VisioAddIn
         /// </returns>
         protected override Office.IRibbonExtensibility CreateRibbonExtensibilityObject()
         {
-            return new AppRibbon();
+            _ribbon = new AppRibbon();
+
+            return _ribbon;
         }
 
 
