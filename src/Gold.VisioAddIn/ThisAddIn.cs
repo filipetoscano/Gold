@@ -6,6 +6,7 @@ using System.Xml.Linq;
 using Visio = Microsoft.Office.Interop.Visio;
 using Office = Microsoft.Office.Core;
 using System.Windows.Forms;
+using Gold.Runtime.Visio;
 
 namespace Gold.VisioAddIn
 {
@@ -79,7 +80,40 @@ namespace Gold.VisioAddIn
             if ( this.Application.IsUndoingOrRedoing == true )
                 return;
 
-            MessageBox.Show( contextString );
+
+
+            /*
+             * 
+             */
+            Dictionary<string,string> ctx = VU.ParseContext( contextString );
+
+            if ( ctx.ContainsKey( "cmd" ) == false )
+                return;
+
+
+            /*
+             * 
+             */
+            Visio.Shape shape = VU.GetShape( app, ctx );
+
+            if ( shape == null )
+                return;
+
+            string modelName = VU.GetProperty( shape, "User", "ModelName" );
+            string shapeName = VU.GetProperty( shape, "User", "ModelShape" );
+
+            if ( string.IsNullOrEmpty( modelName ) == true
+                || string.IsNullOrEmpty( shapeName ) == true )
+            {
+                return;
+            }
+
+
+            /*
+             * 
+             */
+            
+
         }
 
 

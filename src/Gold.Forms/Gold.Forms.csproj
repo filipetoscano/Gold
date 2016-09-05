@@ -30,8 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Platinum.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Platinum.Core.1.0.0.0\lib\net46\Platinum.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,13 +47,99 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builtins\CheckBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Builtins\CheckBoxControl.Designer.cs">
+      <DependentUpon>CheckBoxControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration-Partial.cs" />
+    <Compile Include="Configuration.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Configuration.xml</DependentUpon>
+    </Compile>
+    <Compile Include="IFormProperty.cs" />
+    <Compile Include="Builtins\IntegerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Builtins\IntegerControl.Designer.cs">
+      <DependentUpon>IntegerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Builtins\ListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Builtins\ListControl.Designer.cs">
+      <DependentUpon>ListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Builtins\ListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="PropertyBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Builtins\StringControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Builtins\StringControl.Designer.cs">
+      <DependentUpon>StringControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Builtins\ShapeCodeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Builtins\ShapeCodeControl.Designer.cs">
+      <DependentUpon>ShapeCodeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XmlForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XmlForm.Designer.cs">
+      <DependentUpon>XmlForm.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gold.Core\Gold.Core.csproj">
       <Project>{68c831ff-1711-4569-9438-50cebe2fdb95}</Project>
       <Name>Gold.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Builtins\CheckBoxControl.resx">
+      <DependentUpon>CheckBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Builtins\IntegerControl.resx">
+      <DependentUpon>IntegerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Builtins\StringControl.resx">
+      <DependentUpon>StringControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Builtins\ShapeCodeControl.resx">
+      <DependentUpon>ShapeCodeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Builtins\ListControl.resx">
+      <DependentUpon>ListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XmlForm.resx">
+      <DependentUpon>XmlForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configuration.xml">
+      <Generator>YConfigGenTool</Generator>
+      <LastGenOutput>Configuration.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

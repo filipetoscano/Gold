@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="urn:yttrium/vs/config">
+
+    <section name="gold/xforms" type="FormsConfiguration">
+        <repeater name="namespaces">
+            <item name="add" type="FormsNamespaceConfiguration">
+                <string name="prefix" key="true" />
+                <string name="namespace" key="true" />
+            </item>
+        </repeater>
+
+        <repeater name="properties" as="FormProperties">
+            <item name="add" type="FormsPropertyConfiguration">
+                <string name="name" key="true" />
+                <string name="type" as="Moniker" />
+            </item>
+        </repeater>
+    </section>
+
+</configuration>
