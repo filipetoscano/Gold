@@ -44,5 +44,23 @@ namespace Gold.Model.Rhenium
 
         /// <summary />
         public string StoryEvent { get; set; }
+
+        /// <summary />
+        protected override bool ValidatePropertiesAuto( ValidationMode mode )
+        {
+            if ( IsRequired( ValidationMode.Analysis, mode ) == true && this.Description == null )
+                return false;
+
+            if ( this.Description != null && this.Description.Length > 100 )
+                return false;
+
+            if ( this.Moniker != null && this.Moniker.Length > 100 )
+                return false;
+
+            if ( this.StoryEvent != null && this.StoryEvent.Length > 30 )
+                return false;
+
+            return true;
+        }
     }
 }

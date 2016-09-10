@@ -111,6 +111,19 @@ namespace </xsl:text>
         <xsl:text>    {</xsl:text>
         <xsl:value-of select=" $NewLine " />
         <xsl:apply-templates select=" au:section/au:* " mode="au:property" />
+
+        <xsl:text>        /// &lt;summary /&gt;</xsl:text>
+        <xsl:value-of select=" $NewLine " />
+        <xsl:text>        protected override bool ValidatePropertiesAuto( ValidationMode mode )</xsl:text>
+        <xsl:value-of select=" $NewLine " />
+        <xsl:text>        {</xsl:text>
+        <xsl:value-of select=" $NewLine " />
+        <xsl:apply-templates select=" au:section/au:* " mode="au:property-validation" />
+        <xsl:text>            return true;</xsl:text>
+        <xsl:value-of select=" $NewLine " />
+        <xsl:text>        }</xsl:text>
+        <xsl:value-of select=" $NewLine " />
+
         <xsl:text>    }</xsl:text>
         <xsl:value-of select=" $NewLine " />
 
@@ -118,6 +131,11 @@ namespace </xsl:text>
     </xsl:template>
 
 
+    <!--- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Shape / Property definition
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <xsl:template match=" * " mode="au:property">
         <xsl:text>        /// &lt;summary /&gt;</xsl:text>
         <xsl:value-of select=" $NewLine " />
@@ -127,10 +145,7 @@ namespace </xsl:text>
         <xsl:value-of select=" @id " />
         <xsl:text> { get; set; }</xsl:text>
         <xsl:value-of select=" $NewLine " />
-
-        <xsl:if test=" position() != last() ">
-            <xsl:value-of select=" $NewLine " />
-        </xsl:if>
+        <xsl:value-of select=" $NewLine " />
     </xsl:template>
 
     <xsl:template match=" * " mode="au:property-type">
@@ -138,7 +153,57 @@ namespace </xsl:text>
     </xsl:template>
 
     <xsl:template match=" au:checkbox " mode="au:property-type">
-        <xsl:text>bool</xsl:text>
+        <xsl:text>bool?</xsl:text>
+    </xsl:template>
+
+    <xsl:template match=" au:integer " mode="au:property-type">
+        <xsl:text>int?</xsl:text>
+    </xsl:template>
+
+
+    <!--- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Shape / Property validation
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <xsl:template match=" * " mode="au:property-validation">
+        <xsl:choose>
+            <xsl:when test=" au:required[ @for ] ">
+                <xsl:text>            if ( IsRequired( ValidationMode.</xsl:text>
+                <xsl:value-of select=" au:required/@for " />
+                <xsl:text>, mode ) == true &amp;&amp; this.</xsl:text>
+                <xsl:value-of select=" @id " />
+                <xsl:text> == null )</xsl:text>
+                <xsl:value-of select=" $NewLine " />
+                <xsl:text>                return false;</xsl:text>
+                <xsl:value-of select=" $NewLine " />
+                <xsl:value-of select=" $NewLine " />
+            </xsl:when>
+
+            <xsl:when test=" au:required ">
+                <xsl:text>            if ( this.</xsl:text>
+                <xsl:value-of select=" @id " />
+                <xsl:text> == null )</xsl:text>
+                <xsl:value-of select=" $NewLine " />
+                <xsl:text>                return false;</xsl:text>
+                <xsl:value-of select=" $NewLine " />
+                <xsl:value-of select=" $NewLine " />
+            </xsl:when>
+        </xsl:choose>
+
+        <xsl:if test=" au:length/@max ">
+            <xsl:text>            if ( this.</xsl:text>
+            <xsl:value-of select=" @id " />
+            <xsl:text> != null &amp;&amp; this.</xsl:text>
+            <xsl:value-of select=" @id " />
+            <xsl:text>.Length > </xsl:text>
+            <xsl:value-of select=" au:length/@max " />
+            <xsl:text> )</xsl:text>
+            <xsl:value-of select=" $NewLine " />
+            <xsl:text>                return false;</xsl:text>
+            <xsl:value-of select=" $NewLine " />
+            <xsl:value-of select=" $NewLine " />
+        </xsl:if>
     </xsl:template>
 
 </xsl:stylesheet>

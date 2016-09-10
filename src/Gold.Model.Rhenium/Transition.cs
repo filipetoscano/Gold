@@ -36,5 +36,23 @@ namespace Gold.Model.Rhenium
 
         /// <summary />
         public string TechNotes { get; set; }
+
+        /// <summary />
+        protected override bool ValidatePropertiesAuto( ValidationMode mode )
+        {
+            if ( IsRequired( ValidationMode.Analysis, mode ) == true && this.Event == null )
+                return false;
+
+            if ( this.Event != null && this.Event.Length > 30 )
+                return false;
+
+            if ( IsRequired( ValidationMode.Analysis, mode ) == true && this.Description == null )
+                return false;
+
+            if ( this.Description != null && this.Description.Length > 200 )
+                return false;
+
+            return true;
+        }
     }
 }

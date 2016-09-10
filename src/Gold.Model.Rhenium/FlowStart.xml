@@ -11,12 +11,12 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <section name="Functional">
         <string id="Flow" name="Process">
-            <required for="analysis" />
+            <required for="Analysis" />
             <length max="6" />
         </string>
 
         <string id="Description" name="Description">
-            <required for="analysis" />
+            <required for="Analysis" />
             <length max="50" />
         </string>
 

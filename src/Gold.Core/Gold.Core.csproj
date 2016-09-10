@@ -57,6 +57,7 @@
     <Compile Include="ShapeBase.cs" />
     <Compile Include="IShapeDefinition.cs" />
     <Compile Include="ShapeDefinitionBase.cs" />
+    <Compile Include="ValidationMode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

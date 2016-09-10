@@ -2,7 +2,7 @@
 
 namespace Gold
 {
-    public class ShapeBase
+    public abstract class ShapeBase
     {
         [XmlIgnore]
         public string ShapeCode
@@ -12,9 +12,33 @@ namespace Gold
         }
 
 
-        public virtual bool IsValid()
+        public bool IsValid( ValidationMode mode )
+        {
+            if ( ValidatePropertiesAuto( mode ) == false )
+                return false;
+
+            if ( ValidateProperties( mode ) == false )
+                return false;
+
+            return true;
+        }
+
+
+        protected abstract bool ValidatePropertiesAuto( ValidationMode mode );
+
+
+        protected virtual bool ValidateProperties( ValidationMode mode )
         {
             return true;
+        }
+
+
+        protected bool IsRequired( ValidationMode requiredMode, ValidationMode mode )
+        {
+            int req = (int) requiredMode;
+            int cur = (int) mode;
+
+            return cur >= req;
         }
 
 

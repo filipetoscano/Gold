@@ -4,11 +4,17 @@
         <tabs>
             <tab idMso="TabAddIns" label="Gold DSL">
                 <group id="AuGroup" label="Gold - DSL">
-                    <button id="AuValidate" label="Validate" screentip="Validate" onAction="OnValidateAction"
-                            supertip="Validates the current page." size="large" getImage="ValidateGetImage" />
+                    <button id="AuValidateCur" label="Validate" screentip="Validate" onAction="OnValidateCurrentAction"
+                            supertip="Validates the current page." size="large" getImage="ValidateCurrentGetImage" />
 
-                    <button id="AuExport" label="Export" screentip="Export" onAction="OnExportAction"
-                            supertip="Exports the current page." size="large" getImage="ExportGetImage" />
+                    <button id="AuValidateAll" label="Validate All" screentip="Validate all" onAction="OnValidateAllAction"
+                            supertip="Validates all pages." size="large" getImage="ValidateAllGetImage" />
+
+                    <button id="AuExportCur" label="Export" screentip="Export" onAction="OnExportCurrentAction"
+                            supertip="Exports the current page." size="large" getImage="ExportCurrentGetImage" />
+
+                    <button id="AuExportAll" label="Export all" screentip="Export all" onAction="OnExportAllAction"
+                            supertip="Exports the current page." size="large" getImage="ExportAllGetImage" />
 
                     <dropDown id="AuMode" label="Mode" onAction="OnModeAction"
                               getSelectedItemIndex="ModeGetSelectedItemIndex" getItemCount="ModeGetItemCount" getItemLabel="ModeGetItemLabel" />

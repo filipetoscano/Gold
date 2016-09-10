@@ -11,12 +11,12 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <section name="Functional">
         <string id="Event" name="Event">
-            <required for="analysis" />
+            <required for="Analysis" />
             <length max="30" />
         </string>
 
         <string id="Description" name="Description">
-            <required for="analysis" />
+            <required for="Analysis" />
             <length max="200" />
         </string>
 

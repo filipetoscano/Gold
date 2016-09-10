@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Gold.VisioAddIn.Properties {
+namespace Gold.Runtime.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Gold.VisioAddIn.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Gold.VisioAddIn.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Gold.Runtime.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,52 +61,65 @@ namespace Gold.VisioAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Failed to load _Actor resource string for result item &apos;{0}&apos;..
         /// </summary>
-        internal static System.Drawing.Bitmap ExportImage {
+        internal static string ResultItem_ActorNotDefined {
             get {
-                object obj = ResourceManager.GetObject("ExportImage", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("ResultItem_ActorNotDefined", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Failed to load _Code resource string for result item &apos;{0}&apos;..
         /// </summary>
-        internal static System.Drawing.Bitmap IconError {
+        internal static string ResultItem_CodeNotDefined {
             get {
-                object obj = ResourceManager.GetObject("IconError", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("ResultItem_CodeNotDefined", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Code for item &apos;{0}&apos; is not a valid integer: value was &apos;{1}&apos;..
         /// </summary>
-        internal static System.Drawing.Bitmap IconInformation {
+        internal static string ResultItem_CodeNotInteger {
             get {
-                object obj = ResourceManager.GetObject("IconInformation", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("ResultItem_CodeNotInteger", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Failed to format description for item type &apos;{0}&apos;. Args=&apos;{2}&apos;, Format={1}.
         /// </summary>
-        internal static System.Drawing.Bitmap IconWarn {
+        internal static string ResultItem_DescriptionFormatFail {
             get {
-                object obj = ResourceManager.GetObject("IconWarn", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("ResultItem_DescriptionFormatFail", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Failed to load _Message resource string for result item &apos;{0}&apos;..
         /// </summary>
-        internal static System.Drawing.Bitmap ValidateImage {
+        internal static string ResultItem_DescriptionNotDefined {
             get {
-                object obj = ResourceManager.GetObject("ValidateImage", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("ResultItem_DescriptionNotDefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load _ItemType resource string for result item &apos;{0}&apos;..
+        /// </summary>
+        internal static string ResultItem_ItemTypeNotDefined {
+            get {
+                return ResourceManager.GetString("ResultItem_ItemTypeNotDefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item type for item &apos;{0}&apos; is not a valid value for the enumerate: value was &apos;{1}&apos;..
+        /// </summary>
+        internal static string ResultItem_ItemTypeNotEnum {
+            get {
+                return ResourceManager.GetString("ResultItem_ItemTypeNotEnum", resourceCulture);
             }
         }
     }

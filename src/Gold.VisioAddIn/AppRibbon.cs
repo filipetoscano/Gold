@@ -4,7 +4,6 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 using Office = Microsoft.Office.Core;
 
 namespace Gold.VisioAddIn
@@ -12,6 +11,7 @@ namespace Gold.VisioAddIn
     [ComVisible( true )]
     public class AppRibbon : Office.IRibbonExtensibility
     {
+        private ThisAddIn _addIn;
         private Office.IRibbonUI _ribbon;
         private int? _modeIndex;
 
@@ -19,8 +19,16 @@ namespace Gold.VisioAddIn
         /// <summary>
         /// New instance of Ribbon, by which we run commands over the current page.
         /// </summary>
-        public AppRibbon()
+        public AppRibbon( ThisAddIn addIn )
         {
+            #region Validations
+
+            if ( addIn == null )
+                throw new ArgumentNullException( nameof( addIn ) );
+
+            #endregion
+
+            _addIn = addIn;
         }
 
 
@@ -30,17 +38,26 @@ namespace Gold.VisioAddIn
         /// <param name="ribbonUI"></param>
         public void Ribbon_Load( Office.IRibbonUI ribbonUI )
         {
+            #region Validations
+
+            if ( ribbonUI == null )
+                throw new ArgumentNullException( nameof( ribbonUI ) );
+
+            #endregion
+
             _ribbon = ribbonUI;
         }
 
 
         /// <summary>
-        /// Executes the validate action on the current document.
+        /// Executes the validate action on the current page (of the current
+        /// document).
         /// </summary>
         /// <param name="control">Ribbon control.</param>
-        public void OnValidateAction( Office.IRibbonControl control )
+        public void OnValidateCurrentAction( Office.IRibbonControl control )
         {
-            MessageBox.Show( "validate" );
+            ValidationMode mode = (ValidationMode) _modeIndex.Value;
+            _addIn.ValidateCurrent( mode );
         }
 
 
@@ -49,7 +66,29 @@ namespace Gold.VisioAddIn
         /// </summary>
         /// <param name="control">Ribbon control.</param>
         /// <returns>Image bitmap.</returns>
-        public Bitmap ValidateGetImage( Office.IRibbonControl control )
+        public Bitmap ValidateCurrentGetImage( Office.IRibbonControl control )
+        {
+            return Resources.ValidateImage;
+        }
+
+
+        /// <summary>
+        /// Executes the validate action on the current document.
+        /// </summary>
+        /// <param name="control">Ribbon control.</param>
+        public void OnValidateAllAction( Office.IRibbonControl control )
+        {
+            ValidationMode mode = (ValidationMode) _modeIndex.Value;
+            _addIn.ValidateAll( mode );
+        }
+
+
+        /// <summary>
+        /// Gets the image for the validate button.
+        /// </summary>
+        /// <param name="control">Ribbon control.</param>
+        /// <returns>Image bitmap.</returns>
+        public Bitmap ValidateAllGetImage( Office.IRibbonControl control )
         {
             return Resources.ValidateImage;
         }
@@ -59,9 +98,10 @@ namespace Gold.VisioAddIn
         /// Executes the export action on the current document.
         /// </summary>
         /// <param name="control">Ribbon control.</param>
-        public void OnExportAction( Office.IRibbonControl control )
+        public void OnExportCurrentAction( Office.IRibbonControl control )
         {
-            MessageBox.Show( "export" );
+            ValidationMode mode = (ValidationMode) _modeIndex.Value;
+            _addIn.ExportCurrent( mode );
         }
 
 
@@ -70,7 +110,29 @@ namespace Gold.VisioAddIn
         /// </summary>
         /// <param name="control">Ribbon control.</param>
         /// <returns>Image bitmap.</returns>
-        public Bitmap ExportGetImage( Office.IRibbonControl control )
+        public Bitmap ExportCurrentGetImage( Office.IRibbonControl control )
+        {
+            return Resources.ExportImage;
+        }
+
+
+        /// <summary>
+        /// Executes the export action on the current document.
+        /// </summary>
+        /// <param name="control">Ribbon control.</param>
+        public void OnExportAllAction( Office.IRibbonControl control )
+        {
+            ValidationMode mode = (ValidationMode) _modeIndex.Value;
+            _addIn.ExportAll( mode );
+        }
+
+
+        /// <summary>
+        /// Gets the image for the export button.
+        /// </summary>
+        /// <param name="control">Ribbon control.</param>
+        /// <returns>Image bitmap.</returns>
+        public Bitmap ExportAllGetImage( Office.IRibbonControl control )
         {
             return Resources.ExportImage;
         }

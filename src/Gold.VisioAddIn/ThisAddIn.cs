@@ -121,8 +121,7 @@ namespace Gold.VisioAddIn
             }
             catch ( Exception ex )
             {
-                // TODO
-                MessageBox.Show( ex.ToString() );
+                ExceptionMessageBox.Show( "Model not found.", ex );
                 return;
             }
 
@@ -134,8 +133,7 @@ namespace Gold.VisioAddIn
 
             if ( shapeDef == null )
             {
-                // TODO
-                MessageBox.Show( "shape no def!" );
+                ExceptionMessageBox.Show( "No shape definition." );
                 return;
             }
 
@@ -146,9 +144,15 @@ namespace Gold.VisioAddIn
             if ( ctx[ "cmd" ] == "drop" )
             {
                 /*
-                 * 
+                 * .Id
                  */
                 string shapeId = Guid.NewGuid().ToString();
+                VU.SetProperty( shape, "Prop", "ShapeId", shapeId );
+
+
+                /*
+                 * .Code
+                 */
                 string shapeCode = null;
 
                 if ( string.IsNullOrEmpty( shapeDef.ShapeCodePrefix ) == false )
@@ -161,7 +165,7 @@ namespace Gold.VisioAddIn
 
 
                 /*
-                 * 
+                 * .Text
                  */
                 string shapeXml = VU.GetProperty( shape, "Prop", "ShapeXml" );
                 string shapeText = shapeDef.TextGet( shapeCode, shapeXml );
@@ -196,6 +200,54 @@ namespace Gold.VisioAddIn
                         VU.TextSet( shape, shapeText );
                 }
             }
+        }
+
+
+        /// <summary>
+        /// Executes the .ValidateCurrent command.
+        /// </summary>
+        internal void ValidateCurrent( ValidationMode mode )
+        {
+            if ( this.Application.ActivePage == null )
+                return;
+
+            // TODO
+        }
+
+
+        /// <summary>
+        /// Executes the .ValidateAll command.
+        /// </summary>
+        internal void ValidateAll( ValidationMode mode )
+        {
+            if ( this.Application.ActivePage == null )
+                return;
+
+            // TODO
+        }
+
+
+        /// <summary>
+        /// Executes the .ExportCurrent command.
+        /// </summary>
+        internal void ExportCurrent( ValidationMode mode )
+        {
+            if ( this.Application.ActivePage == null )
+                return;
+
+            // TODO
+        }
+
+
+        /// <summary>
+        /// Executes the .ExportAll command.
+        /// </summary>
+        internal void ExportAll( ValidationMode mode )
+        {
+            if ( this.Application.ActivePage == null )
+                return;
+
+            // TODO
         }
 
 
@@ -270,7 +322,7 @@ namespace Gold.VisioAddIn
         /// </returns>
         protected override Office.IRibbonExtensibility CreateRibbonExtensibilityObject()
         {
-            _ribbon = new AppRibbon();
+            _ribbon = new AppRibbon( this );
 
             return _ribbon;
         }

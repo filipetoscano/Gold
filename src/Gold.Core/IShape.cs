@@ -8,7 +8,7 @@
             set;
         }
 
-        bool IsValid();
+        bool IsValid( ValidationMode mode );
 
         string TextGet();
     }
