@@ -11,7 +11,7 @@ namespace Gold.VisioAddIn
         }
 
 
-        public string ShapeId
+        public string ShapeCode
         {
             get
             {

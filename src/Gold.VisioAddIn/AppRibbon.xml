@@ -16,6 +16,9 @@
                     <button id="AuExportAll" label="Export all" screentip="Export all" onAction="OnExportAllAction"
                             supertip="Exports the current page." size="large" getImage="ExportAllGetImage" />
 
+                    <button id="AuFindShape" label="Find shape" screentip="Find shape" onAction="OnFindShapeAction"
+                            supertip="Find shape with given code." size="large" getImage="FindShapeGetImage" />
+
                     <dropDown id="AuMode" label="Mode" onAction="OnModeAction"
                               getSelectedItemIndex="ModeGetSelectedItemIndex" getItemCount="ModeGetItemCount" getItemLabel="ModeGetItemLabel" />
                 </group>

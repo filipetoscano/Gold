@@ -32,9 +32,9 @@ namespace Gold.VisioAddIn
                  */
                 _initializedOk = true;
             }
-            catch ( Exception )
+            catch ( Exception ex )
             {
-                // TODO: 
+                ExceptionMessageBox.Show( "Unhandled exception: ThisAddIn_Startup", ex );
             }
         }
 
@@ -51,6 +51,12 @@ namespace Gold.VisioAddIn
         * 
         * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+        /// <summary>
+        /// Handles marker events, as emitted by the shapes.
+        /// </summary>
+        /// <param name="app">Visio application.</param>
+        /// <param name="sequenceNum">Sequence number.</param>
+        /// <param name="contextString">Context string, as defined in shape.</param>
         private void Application_MarkerEvent( Visio.Application app, int sequenceNum, string contextString )
         {
             #region Validations
@@ -60,7 +66,25 @@ namespace Gold.VisioAddIn
 
             #endregion
 
+            try
+            {
+                Application_MarkerEventDo( app, sequenceNum, contextString );
+            }
+            catch ( Exception ex )
+            {
+                ExceptionMessageBox.Show( "Unhandled exception: Application_MarkerEvent", ex );
+            }
+        }
 
+
+        /// <summary>
+        /// Implementation of the marker event logic.
+        /// </summary>
+        /// <param name="app">Visio application.</param>
+        /// <param name="sequenceNum">Sequence number.</param>
+        /// <param name="contextString">Context string, as defined in shape.</param>
+        private void Application_MarkerEventDo( Visio.Application app, int sequenceNum, string contextString )
+        {
             /*
              * 
              */
@@ -203,6 +227,13 @@ namespace Gold.VisioAddIn
         }
 
 
+
+        /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        * 
+        * Ribbon commands
+        * 
+        * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
         /// <summary>
         /// Executes the .ValidateCurrent command.
         /// </summary>
@@ -250,6 +281,74 @@ namespace Gold.VisioAddIn
             // TODO
         }
 
+
+        /// <summary>
+        /// Finds a shape.
+        /// </summary>
+        internal void FindShape()
+        {
+            if ( this.Application.ActivePage == null )
+                return;
+
+            try
+            {
+                FindShape( this.Application.ActivePage );
+            }
+            catch ( Exception ex )
+            {
+                ExceptionMessageBox.Show( "Unhandled exception: FindShape", ex );
+            }
+        }
+
+
+
+        /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        * 
+        * Workers
+        * 
+        * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+        private static void FindShape( Visio.IVPage page )
+        {
+            #region Validations
+
+            if ( page == null )
+                throw new ArgumentNullException( nameof( page ) );
+
+            #endregion
+
+
+            /*
+             * 
+             */
+            FindShapeForm form = new FindShapeForm();
+            DialogResult result = form.ShowDialog();
+
+            if ( result != DialogResult.OK )
+                return;
+
+
+            /*
+             * 
+             */
+            foreach ( Visio.IVShape shape in page.Shapes )
+            {
+                string shapeCode = VU.GetProperty( shape, "Prop", "ShapeCode" );
+
+                if ( shapeCode == form.ShapeCode )
+                {
+                    VU.ShapeColorSet( shape, Visio.VisDefaultColors.visGreen );
+                    return;
+                }
+            }
+        }
+
+
+        /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        * 
+        * Shared
+        * 
+        * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
         /// <summary>
         /// Increments a named sequence, keeping the current sequence value in the

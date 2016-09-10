@@ -63,9 +63,29 @@ namespace Gold.VisioAddIn.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ExportImage {
+        internal static System.Drawing.Bitmap ExportAllImage {
             get {
-                object obj = ResourceManager.GetObject("ExportImage", resourceCulture);
+                object obj = ResourceManager.GetObject("ExportAllImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ExportCurrentImage {
+            get {
+                object obj = ResourceManager.GetObject("ExportCurrentImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FindShapeImage {
+            get {
+                object obj = ResourceManager.GetObject("FindShapeImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +123,19 @@ namespace Gold.VisioAddIn.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ValidateImage {
+        internal static System.Drawing.Bitmap ValidateAllImage {
             get {
-                object obj = ResourceManager.GetObject("ValidateImage", resourceCulture);
+                object obj = ResourceManager.GetObject("ValidateAllImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ValidateCurrentImage {
+            get {
+                object obj = ResourceManager.GetObject("ValidateCurrentImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

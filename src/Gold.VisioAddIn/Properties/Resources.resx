@@ -118,8 +118,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ExportImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\exportimage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ExportAllImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\exportallimage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ExportCurrentImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\exportcurrentimage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FindShapeImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\findshapeimage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="IconError" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\iconerror.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -130,7 +136,10 @@
   <data name="IconWarn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\iconwarn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ValidateImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\validateimage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ValidateAllImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\validateallimage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ValidateCurrentImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\validatecurrentimage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

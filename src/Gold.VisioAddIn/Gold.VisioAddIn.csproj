@@ -248,11 +248,14 @@
     <EmbeddedResource Include="AppRibbon.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\ExportImage.png" />
+    <Content Include="Resources\ExportAllImage.png" />
+    <Content Include="Resources\ExportCurrentImage.png" />
+    <Content Include="Resources\FindShapeImage.png" />
     <Content Include="Resources\IconError.png" />
     <Content Include="Resources\IconInformation.png" />
     <Content Include="Resources\IconWarn.png" />
-    <Content Include="Resources\ValidateImage.png" />
+    <Content Include="Resources\ValidateAllImage.png" />
+    <Content Include="Resources\ValidateCurrentImage.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gold.Core\Gold.Core.csproj">

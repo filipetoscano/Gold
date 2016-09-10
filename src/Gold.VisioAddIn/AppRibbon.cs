@@ -68,7 +68,7 @@ namespace Gold.VisioAddIn
         /// <returns>Image bitmap.</returns>
         public Bitmap ValidateCurrentGetImage( Office.IRibbonControl control )
         {
-            return Resources.ValidateImage;
+            return Resources.ValidateCurrentImage;
         }
 
 
@@ -90,7 +90,7 @@ namespace Gold.VisioAddIn
         /// <returns>Image bitmap.</returns>
         public Bitmap ValidateAllGetImage( Office.IRibbonControl control )
         {
-            return Resources.ValidateImage;
+            return Resources.ValidateAllImage;
         }
 
 
@@ -112,7 +112,7 @@ namespace Gold.VisioAddIn
         /// <returns>Image bitmap.</returns>
         public Bitmap ExportCurrentGetImage( Office.IRibbonControl control )
         {
-            return Resources.ExportImage;
+            return Resources.ExportCurrentImage;
         }
 
 
@@ -134,7 +134,28 @@ namespace Gold.VisioAddIn
         /// <returns>Image bitmap.</returns>
         public Bitmap ExportAllGetImage( Office.IRibbonControl control )
         {
-            return Resources.ExportImage;
+            return Resources.ExportAllImage;
+        }
+
+
+        /// <summary>
+        /// Prompts user, and then finds a shape.
+        /// </summary>
+        /// <param name="control">Ribbon control.</param>
+        public void OnFindShapeAction( Office.IRibbonControl control )
+        {
+            _addIn.FindShape();
+        }
+
+
+        /// <summary>
+        /// Gets the image for the 'find shape' button.
+        /// </summary>
+        /// <param name="control">Ribbon control.</param>
+        /// <returns>Image bitmap.</returns>
+        public Bitmap FindShapeGetImage( Office.IRibbonControl control )
+        {
+            return Resources.FindShapeImage;
         }
 
 
