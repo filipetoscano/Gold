@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $Id: automation.proj 58 2015-07-16 20:13:27Z lft $ -->
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
-    DefaultTargets="help">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="help">
     <PropertyGroup>
         <version>1.0.0.0</version>
     </PropertyGroup>
@@ -41,6 +39,34 @@
         <WriteLinesToFile Overwrite="true" File="src\GlobalVersion.cs" Lines="$(versionInfo)" />
         <Exec Command=" nuget restore " />
         <MSBuild Projects="Gold.sln" Properties="Configuration=Release" />
+    </Target>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~ 
+    ~ build/
+    ~ Compile.
+    ~ 
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <Target Name="package">
+        <MakeDir Directories="build" />
+
+        <ItemGroup>
+            <!-- Command -->
+            <Content Include="src\Gold.Command\bin\Release\aucmd.exe" />
+            <Content Include="src\Gold.Command\bin\Release\aucmd.exe.config" />
+
+            <!-- Plugin -->
+            <Content Include="src\Gold.VisioAddIn\bin\Release\Gold.VisioAddIn.dll" />
+            <Content Include="src\Gold.VisioAddIn\bin\Release\Gold.VisioAddIn.dll.config" />
+            <Content Include="src\Gold.VisioAddIn\bin\Release\Gold.VisioAddIn.vsto" />
+            <Content Include="src\Gold.VisioAddIn\bin\Release\*.dll" />
+
+            <!-- DSL -->
+            <Content Include="src\Gold.Model.Rhenium\bin\Release\Gold.Model.Rhenium.dll" />
+        </ItemGroup>
+
+        <Copy SourceFiles="@(Content)" DestinationFolder="build" />
     </Target>
 
 </Project>

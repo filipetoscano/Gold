@@ -60,7 +60,7 @@ namespace Gold.VisioAddIn
                     if ( item.ItemType == ModelResultItemType.Information )
                         countInfo++;
 
-                    dt.Rows.Add( item.ShapeId, item.Code, item.Description );
+                    dt.Rows.Add( item.VisioShapeId, item.Code, item.Description );
                 }
             }
 

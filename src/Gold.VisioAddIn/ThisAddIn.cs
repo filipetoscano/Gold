@@ -1,4 +1,5 @@
 ﻿using Gold.Forms;
+using Gold.Runtime;
 using Gold.Runtime.Visio;
 using System;
 using System.Collections.Generic;
@@ -242,7 +243,21 @@ namespace Gold.VisioAddIn
             if ( this.Application.ActivePage == null )
                 return;
 
-            // TODO
+            ModelCommand command = new ModelCommand()
+            {
+                Operation = ModelOperation.ValidateCurrent,
+                Document = this.Application.ActiveDocument,
+                Page = this.Application.ActivePage,
+            };
+
+            try
+            {
+                CommandExecute( command, mode );
+            }
+            catch ( Exception ex )
+            {
+                ExceptionMessageBox.Show( "Unhandled exception: ValidateCurrent", ex );
+            }
         }
 
 
@@ -254,7 +269,20 @@ namespace Gold.VisioAddIn
             if ( this.Application.ActivePage == null )
                 return;
 
-            // TODO
+            ModelCommand command = new ModelCommand()
+            {
+                Operation = ModelOperation.ValidateAll,
+                Document = this.Application.ActiveDocument,
+            };
+
+            try
+            {
+                CommandExecute( command, mode );
+            }
+            catch ( Exception ex )
+            {
+                ExceptionMessageBox.Show( "Unhandled exception: ValidateAll", ex );
+            }
         }
 
 
@@ -266,7 +294,21 @@ namespace Gold.VisioAddIn
             if ( this.Application.ActivePage == null )
                 return;
 
-            // TODO
+            ModelCommand command = new ModelCommand()
+            {
+                Operation = ModelOperation.ExportCurrent,
+                Document = this.Application.ActiveDocument,
+                Page = this.Application.ActivePage,
+            };
+
+            try
+            {
+                CommandExecute( command, mode );
+            }
+            catch ( Exception ex )
+            {
+                ExceptionMessageBox.Show( "Unhandled exception: ExportCurrent", ex );
+            }
         }
 
 
@@ -278,7 +320,20 @@ namespace Gold.VisioAddIn
             if ( this.Application.ActivePage == null )
                 return;
 
-            // TODO
+            ModelCommand command = new ModelCommand()
+            {
+                Operation = ModelOperation.ExportAll,
+                Document = this.Application.ActiveDocument,
+            };
+
+            try
+            {
+                CommandExecute( command, mode );
+            }
+            catch ( Exception ex )
+            {
+                ExceptionMessageBox.Show( "Unhandled exception: ExportAll", ex );
+            }
         }
 
 
@@ -308,6 +363,110 @@ namespace Gold.VisioAddIn
         * 
         * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+
+        /// <summary>
+        /// Executes a document/page command.
+        /// </summary>
+        /// <param name="command">Which command to execute.</param>
+        /// <param name="mode">Which validation mode to use.</param>
+        private static void CommandExecute( ModelCommand command, ValidationMode mode )
+        {
+            #region Validations
+
+            if ( command == null )
+                throw new ArgumentNullException( nameof( command ) );
+
+            #endregion
+
+
+            /*
+             * #0. Settings!
+             */
+            ModelExportSettings exportSettings = new ModelExportSettings();
+            exportSettings.Program = "VisioAddIn";
+            exportSettings.Mode = mode;
+
+            if ( string.IsNullOrEmpty( command.Document.Path ) == false )
+                exportSettings.Path = System.IO.Path.GetDirectoryName( command.Document.Path );
+
+
+            /*
+             * #1. Run the exporter
+             */
+            ProgressForm pform = new ProgressForm();
+            pform.Command = command;
+            pform.Settings = exportSettings;
+            pform.ShowDialog();
+
+
+            /*
+             * #2. Repaint everything to show that it's ok.
+             *     Paint all objects which have errors to red.
+             *
+             * TODO: This should probably be done in an undo unit, so that
+             * the repainting of all of the shapes can be done atomically.
+             */
+            foreach ( ModelCommandPageResult pageResult in pform.CommandResult.Pages )
+            {
+                if ( pageResult.Processed == false )
+                    continue;
+
+
+                /*
+                 * Paint all black.
+                 */
+                Visio.IVPage page = command.Document.Pages[ pageResult.Name ];
+
+                if ( page == null )
+                    continue;
+
+                foreach ( Visio.IVShape shape in page.Shapes )
+                {
+                    Visio.VisDefaultColors orig = VU.ShapeColorGet( shape );
+
+                    if ( orig != Visio.VisDefaultColors.visBlack )
+                    {
+                        VU.ShapeColorSet( shape, Visio.VisDefaultColors.visBlack );
+                    }
+                }
+
+                if ( pageResult.Success == true )
+                    continue;
+
+
+                /*
+                 * Paint red, only shapes with errors.
+                 */
+                foreach ( ModelResultItem item in pageResult.Items )
+                {
+                    if ( item.ItemType != ModelResultItemType.Error )
+                        continue;
+
+                    if ( item.VisioShapeId == null )
+                        continue;
+
+                    Visio.IVShape shape = page.Shapes[ item.VisioShapeId ];
+
+                    if ( shape == null )
+                        continue;
+
+                    VU.ShapeColorSet( shape, Visio.VisDefaultColors.visRed );
+                }
+            }
+
+
+            /*
+             * #3.
+             */
+            ResultForm rform = new ResultForm();
+            rform.CommandResult = pform.CommandResult;
+            rform.ShowDialog();
+        }
+
+
+        /// <summary>
+        /// Finds a shape.
+        /// </summary>
         private static void FindShape( Visio.IVPage page )
         {
             #region Validations

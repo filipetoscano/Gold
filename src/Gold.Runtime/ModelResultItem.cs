@@ -29,7 +29,7 @@ namespace Gold.Runtime
             this.Code = data.Code;
             this.Description = data.Description;
             this.ItemType = data.ItemType;
-            this.ShapeId = shapeCode;
+            this.VisioShapeId = shapeCode;
         }
 
 
@@ -40,7 +40,7 @@ namespace Gold.Runtime
         /// If null, then the item does not refer to any specific shape and refers
         /// to the page.
         /// </remarks>
-        public string ShapeId
+        public string VisioShapeId
         {
             get;
             private set;

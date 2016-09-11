@@ -1,3 +1,6 @@
+*.suo
+*.csproj.user
+build/
 packages/
 src/**/bin
 src/**/obj

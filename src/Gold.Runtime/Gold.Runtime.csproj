@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+      <Compile Include="..\GlobalVersion.cs">
+          <Link>Properties\GlobalVersion.cs</Link>
+      </Compile>
     <Compile Include="ModelCommand.cs" />
     <Compile Include="ModelCommandPageResult.cs" />
     <Compile Include="ModelCommandResult.cs" />
