@@ -1,53 +1,53 @@
 ﻿using Gold.Runtime;
 using System;
 using System.IO;
-using System.Linq;
+using Yttrium;
 
 namespace Gold.Command
 {
     public static class Program
     {
-        private static ProgramOptions _options;
+        private static CommandLine _options;
 
         static void Main( string[] args )
         {
             /*
-             * Command-line options
+             *
              */
-            ProgramOptions options = new ProgramOptions();
-            //ICommandLineParser parser = new CommandLineParser( new CommandLineParserSettings( Console.Error ) );
+            CommandLine options = new CommandLine();
 
-            //if ( parser.ParseArguments( args, options ) == false )
-            //{
-            //    Environment.Exit( 1 );
-            //}
-
-            if ( options.FilePatterns.Count == 0 )
+            if ( options.Parse( args ) == false )
             {
-                Console.WriteLine( options.GetUsage() );
-                Environment.Exit( 2 );
+                Environment.Exit( 1001 );
+                return;
+            }
+
+            if ( options.Help == true )
+            {
+                options.HelpShow();
+                Environment.Exit( 1002 );
+                return;
             }
 
             _options = options;
 
 
-
             /*
-             * Construct list of (unique) files to be processed.
+             *
              */
-            string[] files = null; //Path2.ToUnique( options.FilePatterns.ToArray() );
+            string[] files = Yttrium.Glob.Do( options.FilePatterns.ToArray() );
 
-            if ( files.Length == 0 )
+            if ( files == null || files.Length == 0 )
             {
-                Console.WriteLine( "error: no matching files" );
-                Environment.Exit( 3 );
+                Console.WriteLine( "error: no matching files." );
+                Environment.Exit( 2 );
             }
 
 
             /*
              * 
              */
-            Console.WriteLine( "~ mode: '{0}'", options.Mode );
+            Console.WriteLine( "~ mode: '{0}'", _options.Mode );
 
 
             /*
@@ -79,7 +79,7 @@ namespace Gold.Command
                     /*
                      * 
                      */
-                    Console.Write( "+ opening '{0}'...", "TODO" ); //Path2.RelativePath( file ) );
+                    Console.Write( "+ opening '{0}'...", Path2.RelativePath( file ) );
                     FileInfo fileInfo = new FileInfo( file );
 
                     if ( fileInfo.Exists == false )
