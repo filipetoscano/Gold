@@ -14,7 +14,7 @@ namespace Gold.Model.Rhenium
 
         /// <summary />
         public string FriendlyName
-        { get { return "Web flow"; } }
+        { get { return "Flow"; } }
 
         /// <summary />
         public XmlDocument FormDefinition
@@ -23,13 +23,13 @@ namespace Gold.Model.Rhenium
 
 
     [XmlRoot( ElementName = "r" )]
-    public partial class FlowStart : ShapeBase, IShape
+    public partial class FlowStart : Shape, IShape
     {
         /// <summary />
-        public string Flow { get; set; }
+        public string Code { get; set; }
 
         /// <summary />
-        public string Description { get; set; }
+        public string Name { get; set; }
 
         /// <summary />
         public string Notes { get; set; }
@@ -37,16 +37,16 @@ namespace Gold.Model.Rhenium
         /// <summary />
         protected override bool ValidatePropertiesAuto( ValidationMode mode )
         {
-            if ( IsRequired( ValidationMode.Analysis, mode ) == true && this.Flow == null )
+            if ( IsRequired( ValidationMode.Analysis, mode ) == true && this.Code == null )
                 return false;
 
-            if ( this.Flow != null && this.Flow.Length > 6 )
+            if ( this.Code != null && this.Code.Length > 6 )
                 return false;
 
-            if ( IsRequired( ValidationMode.Analysis, mode ) == true && this.Description == null )
+            if ( IsRequired( ValidationMode.Analysis, mode ) == true && this.Name == null )
                 return false;
 
-            if ( this.Description != null && this.Description.Length > 50 )
+            if ( this.Name != null && this.Name.Length > 50 )
                 return false;
 
             return true;

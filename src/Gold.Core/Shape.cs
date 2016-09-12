@@ -2,7 +2,7 @@
 
 namespace Gold
 {
-    public abstract class ShapeBase
+    public abstract class Shape
     {
         [XmlIgnore]
         public string ShapeCode

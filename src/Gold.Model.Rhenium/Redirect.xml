@@ -1,7 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <?codebehind transformation="ToShape.xslt"?>
 <shape xmlns="urn:gold">
-    <name>Flow</name>
+    <name>Node</name>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Definition
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <definition>
+        <sequence prefix="N" format="N{1:D3}" />
+    </definition>
 
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -10,14 +20,9 @@
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <section name="Functional">
-        <string id="Code" name="Code">
+        <string id="Description" name="Description">
             <required for="Analysis" />
-            <length max="6" />
-        </string>
-
-        <string id="Name" name="Name">
-            <required for="Analysis" />
-            <length max="50" />
+            <length max="100" />
         </string>
 
         <string id="Notes" name="Notes" multiline="true" />
@@ -30,5 +35,12 @@
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <section name="Technical">
+        <string id="Moniker" name="Moniker" toolTip="By default, will use class name which includes flow and node identifiers.">
+            <length max="100" />
+        </string>
+
+        <string id="StoryEvent" name="Story event">
+            <length max="30" />
+        </string>
     </section>
 </shape>

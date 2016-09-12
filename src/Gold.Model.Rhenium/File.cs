@@ -6,15 +6,23 @@ using System.Xml.Serialization;
 
 namespace Gold.Model.Rhenium
 {
-    public class TransitionDefinition : ShapeDefinitionBase<Transition>, IShapeDefinition
+    public class FileDefinition : ShapeDefinitionBase<File>, IShapeDefinition
     {
         /// <summary />
         public string Name
-        { get { return "Transition"; } }
+        { get { return "File"; } }
 
         /// <summary />
         public string FriendlyName
-        { get { return "Transition"; } }
+        { get { return "File"; } }
+
+        /// <summary />
+        public override string ShapeCodePrefix
+        { get { return "N"; } }
+
+        /// <summary />
+        public override string ShapeCodeFormat
+        { get { return "N{1:D3}"; } }
 
         /// <summary />
         public XmlDocument FormDefinition
@@ -23,11 +31,8 @@ namespace Gold.Model.Rhenium
 
 
     [XmlRoot( ElementName = "r" )]
-    public partial class Transition : Shape, IShape
+    public partial class File : Shape, IShape
     {
-        /// <summary />
-        public string Event { get; set; }
-
         /// <summary />
         public string Description { get; set; }
 
@@ -35,21 +40,24 @@ namespace Gold.Model.Rhenium
         public string Notes { get; set; }
 
         /// <summary />
-        public string TechNotes { get; set; }
+        public string Moniker { get; set; }
+
+        /// <summary />
+        public string StoryEvent { get; set; }
 
         /// <summary />
         protected override bool ValidatePropertiesAuto( ValidationMode mode )
         {
-            if ( IsRequired( ValidationMode.Analysis, mode ) == true && this.Event == null )
-                return false;
-
-            if ( this.Event != null && this.Event.Length > 30 )
-                return false;
-
             if ( IsRequired( ValidationMode.Analysis, mode ) == true && this.Description == null )
                 return false;
 
-            if ( this.Description != null && this.Description.Length > 200 )
+            if ( this.Description != null && this.Description.Length > 100 )
+                return false;
+
+            if ( this.Moniker != null && this.Moniker.Length > 100 )
+                return false;
+
+            if ( this.StoryEvent != null && this.StoryEvent.Length > 30 )
                 return false;
 
             return true;

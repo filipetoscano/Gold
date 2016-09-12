@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.InteropServices;
+using VisioShape = Microsoft.Office.Interop.Visio.Shape;
 
 namespace Gold.Runtime.Visio
 {
@@ -169,7 +170,7 @@ namespace Gold.Runtime.Visio
         /// <param name="visioApplication">Visio application instance.</param>
         /// <param name="context">Marker event context.</param>
         /// <returns>Shape that raised marker event, or null if shape is not found.</returns>
-        public static Shape GetShape( IVApplication visioApplication, string context )
+        public static VisioShape GetShape( IVApplication visioApplication, string context )
         {
             Dictionary<string, string> nvc = ParseContext( context );
 
@@ -183,7 +184,7 @@ namespace Gold.Runtime.Visio
         /// <param name="visioApplication">Visio application instance.</param>
         /// <param name="context">Parsed marker event context.</param>
         /// <returns>Shape that raised marker event, or null if shape is not found.</returns>
-        public static Shape GetShape( IVApplication visioApplication, Dictionary<string, string> context )
+        public static VisioShape GetShape( IVApplication visioApplication, Dictionary<string, string> context )
         {
             #region Validations
 
@@ -214,7 +215,7 @@ namespace Gold.Runtime.Visio
             string shapeId = contextShape;
 
 
-            Shape targetShape = null;
+            VisioShape targetShape = null;
 
             // If the command line arguments contains document, page, and shape
             // then look up the shape.
@@ -332,7 +333,7 @@ namespace Gold.Runtime.Visio
                 cell.FormulaU = color.ToString( "D" );
             }
 
-            foreach ( Shape subShape in shape.Shapes )
+            foreach ( Microsoft.Office.Interop.Visio.Shape subShape in shape.Shapes )
             {
                 ShapeColorSet( subShape, color );
             }

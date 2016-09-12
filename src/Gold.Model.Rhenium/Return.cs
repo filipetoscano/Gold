@@ -6,23 +6,23 @@ using System.Xml.Serialization;
 
 namespace Gold.Model.Rhenium
 {
-    public class NodeDefinition : ShapeDefinitionBase<Node>, IShapeDefinition
+    public class ReturnDefinition : ShapeDefinitionBase<Return>, IShapeDefinition
     {
         /// <summary />
         public string Name
-        { get { return "Node"; } }
+        { get { return "Return"; } }
 
         /// <summary />
         public string FriendlyName
-        { get { return "Node"; } }
+        { get { return "Return"; } }
 
         /// <summary />
         public override string ShapeCodePrefix
-        { get { return "N"; } }
+        { get { return "Z"; } }
 
         /// <summary />
         public override string ShapeCodeFormat
-        { get { return "N{1:D3}"; } }
+        { get { return "Z{1:D3}"; } }
 
         /// <summary />
         public XmlDocument FormDefinition
@@ -31,7 +31,7 @@ namespace Gold.Model.Rhenium
 
 
     [XmlRoot( ElementName = "r" )]
-    public partial class Node : Shape, IShape
+    public partial class Return : Shape, IShape
     {
         /// <summary />
         public string Description { get; set; }
@@ -40,24 +40,9 @@ namespace Gold.Model.Rhenium
         public string Notes { get; set; }
 
         /// <summary />
-        public string Moniker { get; set; }
-
-        /// <summary />
-        public string StoryEvent { get; set; }
-
-        /// <summary />
         protected override bool ValidatePropertiesAuto( ValidationMode mode )
         {
-            if ( IsRequired( ValidationMode.Analysis, mode ) == true && this.Description == null )
-                return false;
-
             if ( this.Description != null && this.Description.Length > 100 )
-                return false;
-
-            if ( this.Moniker != null && this.Moniker.Length > 100 )
-                return false;
-
-            if ( this.StoryEvent != null && this.StoryEvent.Length > 30 )
                 return false;
 
             return true;

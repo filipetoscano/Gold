@@ -31,7 +31,7 @@ namespace Gold.Model.Rhenium
 
 
     [XmlRoot( ElementName = "r" )]
-    public partial class Screen : ShapeBase, IShape
+    public partial class Screen : Shape, IShape
     {
         /// <summary />
         public string Description { get; set; }

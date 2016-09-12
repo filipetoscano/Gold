@@ -6,15 +6,23 @@ using System.Xml.Serialization;
 
 namespace Gold.Model.Rhenium
 {
-    public class TransitionDefinition : ShapeDefinitionBase<Transition>, IShapeDefinition
+    public class SubFlowCallDefinition : ShapeDefinitionBase<SubFlowCall>, IShapeDefinition
     {
         /// <summary />
         public string Name
-        { get { return "Transition"; } }
+        { get { return "SubFlowCall"; } }
 
         /// <summary />
         public string FriendlyName
-        { get { return "Transition"; } }
+        { get { return "Sub-flow"; } }
+
+        /// <summary />
+        public override string ShapeCodePrefix
+        { get { return "S"; } }
+
+        /// <summary />
+        public override string ShapeCodeFormat
+        { get { return "S{1:D3}"; } }
 
         /// <summary />
         public XmlDocument FormDefinition
@@ -23,10 +31,10 @@ namespace Gold.Model.Rhenium
 
 
     [XmlRoot( ElementName = "r" )]
-    public partial class Transition : Shape, IShape
+    public partial class SubFlowCall : Shape, IShape
     {
         /// <summary />
-        public string Event { get; set; }
+        public string Code { get; set; }
 
         /// <summary />
         public string Description { get; set; }
@@ -35,21 +43,18 @@ namespace Gold.Model.Rhenium
         public string Notes { get; set; }
 
         /// <summary />
-        public string TechNotes { get; set; }
-
-        /// <summary />
         protected override bool ValidatePropertiesAuto( ValidationMode mode )
         {
-            if ( IsRequired( ValidationMode.Analysis, mode ) == true && this.Event == null )
+            if ( IsRequired( ValidationMode.Analysis, mode ) == true && this.Code == null )
                 return false;
 
-            if ( this.Event != null && this.Event.Length > 30 )
+            if ( this.Code != null && this.Code.Length > 6 )
                 return false;
 
             if ( IsRequired( ValidationMode.Analysis, mode ) == true && this.Description == null )
                 return false;
 
-            if ( this.Description != null && this.Description.Length > 200 )
+            if ( this.Description != null && this.Description.Length > 100 )
                 return false;
 
             return true;

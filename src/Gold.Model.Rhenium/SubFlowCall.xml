@@ -1,7 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <?codebehind transformation="ToShape.xslt"?>
 <shape xmlns="urn:gold">
-    <name>Flow</name>
+    <name>Sub-flow</name>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Definition
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <definition>
+        <sequence prefix="S" format="S{1:D3}" />
+    </definition>
 
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -10,14 +20,14 @@
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <section name="Functional">
-        <string id="Code" name="Code">
+        <string id="Code" name="Call Flow">
             <required for="Analysis" />
             <length max="6" />
         </string>
 
-        <string id="Name" name="Name">
+        <string id="Description" name="Description">
             <required for="Analysis" />
-            <length max="50" />
+            <length max="100" />
         </string>
 
         <string id="Notes" name="Notes" multiline="true" />

@@ -18,9 +18,16 @@ namespace Gold.Model.Rhenium
             get
             {
                 List<IShapeDefinition> l = new List<IShapeDefinition>();
+                l.Add( new FileDefinition() );
                 l.Add( new FlowStartDefinition() );
+                l.Add( new JumpPointDefinition() );
+                l.Add( new JumpToDefinition() );
                 l.Add( new NodeDefinition() );
+                l.Add( new RedirectDefinition() );
+                l.Add( new ReturnDefinition() );
                 l.Add( new ScreenDefinition() );
+                l.Add( new SubFlowCallDefinition() );
+                l.Add( new SubFlowStartDefinition() );
                 l.Add( new TransitionDefinition() );
 
                 return l;

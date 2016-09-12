@@ -6,15 +6,15 @@ using System.Xml.Serialization;
 
 namespace Gold.Model.Rhenium
 {
-    public class TransitionDefinition : ShapeDefinitionBase<Transition>, IShapeDefinition
+    public class SubFlowStartDefinition : ShapeDefinitionBase<SubFlowStart>, IShapeDefinition
     {
         /// <summary />
         public string Name
-        { get { return "Transition"; } }
+        { get { return "SubFlowStart"; } }
 
         /// <summary />
         public string FriendlyName
-        { get { return "Transition"; } }
+        { get { return "Sub-flow"; } }
 
         /// <summary />
         public XmlDocument FormDefinition
@@ -23,33 +23,30 @@ namespace Gold.Model.Rhenium
 
 
     [XmlRoot( ElementName = "r" )]
-    public partial class Transition : Shape, IShape
+    public partial class SubFlowStart : Shape, IShape
     {
         /// <summary />
-        public string Event { get; set; }
+        public string Code { get; set; }
 
         /// <summary />
-        public string Description { get; set; }
+        public string Name { get; set; }
 
         /// <summary />
         public string Notes { get; set; }
 
         /// <summary />
-        public string TechNotes { get; set; }
-
-        /// <summary />
         protected override bool ValidatePropertiesAuto( ValidationMode mode )
         {
-            if ( IsRequired( ValidationMode.Analysis, mode ) == true && this.Event == null )
+            if ( IsRequired( ValidationMode.Analysis, mode ) == true && this.Code == null )
                 return false;
 
-            if ( this.Event != null && this.Event.Length > 30 )
+            if ( this.Code != null && this.Code.Length > 6 )
                 return false;
 
-            if ( IsRequired( ValidationMode.Analysis, mode ) == true && this.Description == null )
+            if ( IsRequired( ValidationMode.Analysis, mode ) == true && this.Name == null )
                 return false;
 
-            if ( this.Description != null && this.Description.Length > 200 )
+            if ( this.Name != null && this.Name.Length > 50 )
                 return false;
 
             return true;

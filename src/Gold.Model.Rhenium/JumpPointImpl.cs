@@ -1,10 +1,10 @@
 ﻿namespace Gold.Model.Rhenium
 {
-    public partial class FlowStart
+    public partial class JumpPoint
     {
         public override string TextGet()
         {
-            return $"[{ this.Code }] { this.Name }";
+            return $"{ this.Point }";
         }
     }
 }

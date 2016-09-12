@@ -106,7 +106,7 @@ namespace </xsl:text>
         <xsl:value-of select=" $NewLine " />
         <xsl:text>    public partial class </xsl:text>
         <xsl:value-of select=" $FileName "/>
-        <xsl:text> : ShapeBase, IShape</xsl:text>
+        <xsl:text> : Shape, IShape</xsl:text>
         <xsl:value-of select=" $NewLine " />
         <xsl:text>    {</xsl:text>
         <xsl:value-of select=" $NewLine " />

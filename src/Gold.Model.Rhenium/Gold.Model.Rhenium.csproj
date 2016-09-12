@@ -40,15 +40,56 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-      <Compile Include="..\GlobalVersion.cs">
-          <Link>Properties\GlobalVersion.cs</Link>
-      </Compile>
+    <Compile Include="..\GlobalVersion.cs">
+      <Link>Properties\GlobalVersion.cs</Link>
+    </Compile>
+    <Compile Include="File.cs">
+      <DependentUpon>File.xml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="JumpToImpl.cs" />
+    <Compile Include="JumpPointImpl.cs" />
+    <Compile Include="JumpPoint.cs">
+      <DependentUpon>JumpPoint.xml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="JumpTo.cs">
+      <DependentUpon>JumpTo.xml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Return.cs">
+      <DependentUpon>Return.xml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Redirect.cs">
+      <DependentUpon>Redirect.xml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="RedirectImpl.cs" />
+    <Compile Include="SubFlowCall.cs">
+      <DependentUpon>SubFlowCall.xml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SubFlowCallImpl.cs" />
+    <Compile Include="SubFlowStartImpl.cs" />
+    <Compile Include="SubFlowStart.cs">
+      <DependentUpon>SubFlowStart.xml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Node.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Node.xml</DependentUpon>
     </Compile>
     <Compile Include="FlowStartImpl.cs" />
+    <Compile Include="FileImpl.cs" />
     <Compile Include="RheniumModel.cs" />
     <Compile Include="TransitionImpl.cs" />
     <Compile Include="ScreenImpl.cs" />
@@ -95,6 +136,48 @@
     <EmbeddedResource Include="Transition.xml">
       <Generator>YXsltTool</Generator>
       <LastGenOutput>Transition.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="File.xml">
+      <Generator>YXsltTool</Generator>
+      <LastGenOutput>File.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SubFlowStart.xml">
+      <Generator>YXsltTool</Generator>
+      <LastGenOutput>SubFlowStart.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="JumpTo.xml">
+      <Generator>YXsltTool</Generator>
+      <LastGenOutput>JumpTo.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="JumpPoint.xml">
+      <Generator>YXsltTool</Generator>
+      <LastGenOutput>JumpPoint.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Redirect.xml">
+      <Generator>YXsltTool</Generator>
+      <LastGenOutput>Redirect.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Return.xml">
+      <Generator>YXsltTool</Generator>
+      <LastGenOutput>Return.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SubFlowCall.xml">
+      <Generator>YXsltTool</Generator>
+      <LastGenOutput>SubFlowCall.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

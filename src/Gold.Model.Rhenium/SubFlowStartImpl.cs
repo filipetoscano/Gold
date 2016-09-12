@@ -1,6 +1,6 @@
 ﻿namespace Gold.Model.Rhenium
 {
-    public partial class FlowStart
+    public partial class SubFlowStart
     {
         public override string TextGet()
         {
