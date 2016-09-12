@@ -47,9 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-      <Compile Include="..\GlobalVersion.cs">
-          <Link>Properties\GlobalVersion.cs</Link>
-      </Compile>
+    <Compile Include="..\GlobalVersion.cs">
+      <Link>Properties\GlobalVersion.cs</Link>
+    </Compile>
     <Compile Include="Builtins\CheckBoxControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

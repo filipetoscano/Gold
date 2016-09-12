@@ -95,18 +95,29 @@ namespace Gold.Forms
         }
 
 
+        /// <summary>
+        /// Gets the property identifier associated with the current control.
+        /// </summary>
         public string Id
         {
             get;
             private set;
         }
 
+
+        /// <summary>
+        /// Gets the label of the current control.
+        /// </summary>
         public string Label
         {
             get;
             private set;
         }
 
+
+        /// <summary>
+        /// Gets whether the current control has conditional validations.
+        /// </summary>
         public bool IsConditional
         {
             get;
@@ -114,6 +125,9 @@ namespace Gold.Forms
         }
 
 
+        /// <summary>
+        /// Gets whether the current control is required or not.
+        /// </summary>
         public bool IsRequired
         {
             get;
@@ -121,6 +135,9 @@ namespace Gold.Forms
         }
 
 
+        /// <summary>
+        /// Gets whether the current field is visible or not.
+        /// </summary>
         public bool IsVisible
         {
             get;
@@ -128,6 +145,9 @@ namespace Gold.Forms
         }
 
 
+        /// <summary>
+        /// Gets whether this control influences other fields.
+        /// </summary>
         public bool HasConditionals
         {
             get;

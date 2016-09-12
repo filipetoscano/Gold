@@ -129,6 +129,10 @@
   -->
   <ItemGroup>
     <Reference Include="Accessibility" />
+    <Reference Include="Platinum.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Platinum.Core.1.0.0.0\lib\net46\Platinum.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -174,15 +178,25 @@
     can be found.
   -->
   <ItemGroup>
-      <Compile Include="..\GlobalVersion.cs">
-          <Link>Properties\GlobalVersion.cs</Link>
-      </Compile>
+    <Compile Include="..\GlobalVersion.cs">
+      <Link>Properties\GlobalVersion.cs</Link>
+    </Compile>
     <Compile Include="AppRibbon.cs" />
+    <Compile Include="Errors.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Errors.xml</DependentUpon>
+    </Compile>
     <Compile Include="ExceptionMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ExceptionMessageBox.Designer.cs">
       <DependentUpon>ExceptionMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Exceptions.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Exceptions.xml</DependentUpon>
     </Compile>
     <Compile Include="FindShapeForm.cs">
       <SubType>Form</SubType>
@@ -199,6 +213,7 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="ER.resx" />
     <EmbeddedResource Include="ExceptionMessageBox.resx">
       <DependentUpon>ExceptionMessageBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -222,6 +237,7 @@
       <DependentUpon>ResultForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -251,6 +267,14 @@
     <EmbeddedResource Include="AppRibbon.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Errors.xml">
+      <Generator>YResxErrorTool</Generator>
+      <LastGenOutput>Errors.cs</LastGenOutput>
+    </None>
+    <None Include="Exceptions.xml">
+      <Generator>YResxExceptionTool</Generator>
+      <LastGenOutput>Exceptions.cs</LastGenOutput>
+    </None>
     <Content Include="Resources\ExportAllImage.png" />
     <Content Include="Resources\ExportCurrentImage.png" />
     <Content Include="Resources\FindShapeImage.png" />

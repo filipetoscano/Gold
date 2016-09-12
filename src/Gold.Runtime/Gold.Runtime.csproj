@@ -47,9 +47,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-      <Compile Include="..\GlobalVersion.cs">
-          <Link>Properties\GlobalVersion.cs</Link>
-      </Compile>
+    <Compile Include="..\GlobalVersion.cs">
+      <Link>Properties\GlobalVersion.cs</Link>
+    </Compile>
+    <Compile Include="Errors.cs">
+      <DependentUpon>Errors.xml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Exceptions.cs">
+      <DependentUpon>Exceptions.xml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="ModelCommand.cs" />
     <Compile Include="ModelCommandPageResult.cs" />
     <Compile Include="ModelCommandResult.cs" />
@@ -78,10 +88,23 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ER.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Errors.xml">
+      <Generator>YResxErrorTool</Generator>
+      <LastGenOutput>Errors.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Exceptions.xml">
+      <Generator>YResxExceptionTool</Generator>
+      <LastGenOutput>Exceptions.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

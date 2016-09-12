@@ -24,19 +24,20 @@ namespace Gold.VisioAddIn
             #region Validations
 
             if ( message == null )
-                throw new ArgumentNullException( "message" );
-
-            if ( exception == null )
-                throw new ArgumentNullException( "exception" );
+                throw new ArgumentNullException( nameof( message ) );
 
             #endregion
+
 
             /*
              * 
              */
             ExceptionMessageBox form = new ExceptionMessageBox();
             form.label.Text = message;
-            form.textBox.Text = exception?.ToString() ?? message;
+            form.textBox.Text = exception?.ToString() ?? "";
+
+            if ( exception == null )
+                form.Height = 147;
 
             form.ShowDialog();
         }

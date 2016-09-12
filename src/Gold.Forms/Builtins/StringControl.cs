@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using System.Xml;
 using System.Xml.XPath;
 
@@ -65,7 +67,7 @@ namespace Gold.Forms
         {
             get
             {
-                string v = this.textBox.Text.TrimEnd();
+                string v = this.textBox.Text.TrimEnd().Replace( "\r\n", "\n" );
 
                 if ( v.Length == 0 )
                     return null;
@@ -75,7 +77,15 @@ namespace Gold.Forms
 
             set
             {
-                this.textBox.Text = value;
+                if ( this.textBox.Multiline == true )
+                {
+                    Regex regex = new Regex( "(?<!\r)\n" );
+                    this.textBox.Text = regex.Replace( value ?? "", "\r\n" );
+                }
+                else
+                {
+                    this.textBox.Text = value ?? "";
+                }
             }
         }
 
@@ -129,6 +139,15 @@ namespace Gold.Forms
         private void textBox_Validated( object sender, EventArgs e )
         {
             MarkValid( this.label, this.textBox );
+        }
+
+
+        private void textBox_KeyDown( object sender, KeyEventArgs e )
+        {
+            if ( e.KeyCode == Keys.A && e.Control )
+            {
+                this.textBox.SelectAll();
+            }
         }
     }
 }

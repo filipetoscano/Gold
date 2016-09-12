@@ -4,6 +4,10 @@ build/
 packages/
 src/**/bin
 src/**/obj
+src/**/Configuration.cs
+src/**/ER.resx
+src/**/Errors.cs
+src/**/Exceptions.cs
 tests/**/bin
 tests/**/obj
 tools/**/bin

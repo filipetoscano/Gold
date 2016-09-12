@@ -4,7 +4,7 @@
     {
         public override string TextGet()
         {
-            return $"[{ this.Code }] { this.Description }";
+            return $"({ this.ShapeCode })\n{ this.Description }\n[{ this.Code }]";
         }
     }
 }

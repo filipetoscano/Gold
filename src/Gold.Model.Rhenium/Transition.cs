@@ -17,6 +17,14 @@ namespace Gold.Model.Rhenium
         { get { return "Transition"; } }
 
         /// <summary />
+        public override string ShapeCodePrefix
+        { get { return "T"; } }
+
+        /// <summary />
+        public override string ShapeCodeFormat
+        { get { return "T{1:D4}"; } }
+
+        /// <summary />
         public XmlDocument FormDefinition
         { get { return FormDefinitionLoad(); } }
     }

@@ -146,9 +146,16 @@ namespace Gold.VisioAddIn
             }
             catch ( Exception ex )
             {
-                ExceptionMessageBox.Show( "Model not found.", ex );
+                ExceptionMessageBox.Show( "Model failed to load.", ex );
                 return;
             }
+
+            if ( model == null )
+            {
+                ExceptionMessageBox.Show( $"Model '{ modelName }' not found." );
+                return;
+            }
+
 
 
             /*
@@ -158,7 +165,7 @@ namespace Gold.VisioAddIn
 
             if ( shapeDef == null )
             {
-                ExceptionMessageBox.Show( "No shape definition." );
+                ExceptionMessageBox.Show( $"No shape definition for '{ shapeName }' found." );
                 return;
             }
 
